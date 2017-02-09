@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.min.js"></script>
+    <script>
+        /**
+         * 什么是服务？
+         *     A需要服务 B提供服务
+         *     服务是指为他人做事，并使他人从中受益的一种有偿或无偿的活动
+         *     提供一种具备处理功能的特定的行为操作，这样的行为操作可能需要有偿
+         * Angular中的服务指代的时什么？
+         *      提供了一种具备处理功能的应用程序逻辑的函数或者方法~~
+         *      这个服务的函数调用能处理一定的业务功能
+         *
+         *      就是一组具备了一定功能的函数
+         *
+         *      Angular中有两种服务【类型】
+         *          内置：30多种~
+         *          自定义：3种实现方式，1中常见方式
+         * Angular中常见的有哪些服务？
+         *      $location
+         *      $http
+         *      $timeout
+         *      $interval
+         *      ...
+         *      具体请参考API
+         * Angular中的自定义服务
+         *
+         */
+    </script>
+</head>
+<body>
+<div ng-controller="ctrl">
+
+</div>
+
+<script>
+    var app = angular.module("myApp", []);
+    /**
+     * $location服务，专门用来进行URL地址的解析处理
+     *      $location必须包含在控制器的函数中，通过$location依赖注入之后才能使用
+     */
+    app.controller("ctrl", ["$location", function($location) {
+           console.log($location.absUrl() + "05");
+
+        $location.url("/phones/huawei?username=baz&password=123");
+
+        console.log($location.url());
+
+        console.log($location.protocol());
+
+        console.log($location.host());
+
+        console.log($location.port());
+
+        console.log($location.path());
+
+        console.log($location.search());
+        $location.search("username", "admin");
+
+        $location.hash("bottom");
+        console.log($location.hash());
+
+    }]);
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+/**
+ * Created by LJY on 2017/2/8.
+ */
+angular.module("myApp")
+	.config(["$routeProvider",function($rp){
+		$rp.when(
+			"/1",
+			{
+				templateUrl:"1.html"
+			}
+		).when(
+			"/2",
+			{
+				templateUrl:"2.html"
+			}
+		).when(
+			"/3",
+			{
+				templateUrl:"3.html"
+			}
+		).when(
+			"/4",
+			{
+				templateUrl:"4.html"
+			}
+		).when(
+			"/5",
+			{
+				templateUrl:"5.html"
+			}
+		).otherwise(
+			"/1"
+		)
+	}]);

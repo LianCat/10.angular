@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-spp="myApp">
+<head lang="en">
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="angular.min.js"></script>
+</head>
+<body>
+	<div ng-controller="ctrl"></div>
+
+	<script>
+		var app = angular.module("myApp",[])
+		app.factory("service1",function(){
+			//todo
+			return{
+				name:"mm",
+				show:function(){
+					return this.name + "say: Eat fish"
+				}
+			}
+		})
+
+		app.controller("ctrl","$scope",["service1",function(servicel,$scope) {
+			console.log(servicel.name)
+		}])
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <p>
+                搜索:
+                <input ng-model="$ctrl.query">
+            </p>
+            <p>
+                排序:
+                <select ng-model="$ctrl.orderProp">
+                    <option value="age">年份</option>
+                    <option value="id">名称</option>
+                    <option value="name">描述</option>
+                </select>
+            </p>
+        </div>
+        <div class="col-md-10">
+            <ul class="phones">
+                <li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp:true">
+                    <span>
+                        <a href="#/phones/{{phone.id}}">
+                        {{phone.name}}
+                        </a>
+                    </span>
+                    <p><a href="#/phones/{{phone.id}}">
+                        <img ng-src="{{phone.imageUrl}}" alt="">
+                    </a></p>
+                    <p>{{phone.id}}</p>
+                    <p>{{phone.snippet}}</p>
+                    <p>{{phone.age}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

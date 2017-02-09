@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="phonecatApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--
+        组件：就是包含了控制器和页面模板的一个特殊部分
+    -->
+    <script src="js/lib/angular/angular.min.js"></script>
+</head>
+<body>
+<!-- 使用angular定义好的组件; 命名规则~组件名称驼峰命名法，引入到标签中将大写字母换成小写字母并添加中划线 -->
+<phone-list></phone-list>
+
+<script>
+    var app = angular.module("phonecatApp", []);
+
+    /* 一个组件，通过component来声明
+    *  组件中，包含模板template、控制器controller
+    * */
+    app.component("phoneList", {
+        template:
+                '<ul class="myshop">' +
+                    '<li ng-repeat="phone in $ctrl.phones">' +
+                '<span>{{phone.name}}</span>' +
+                '<p>{{phone.snippet}}</p>' +
+                '</li>' +
+                '</ul>',
+        controller:function pc() {
+            this.phones = [
+                {
+                    name: 'Nexus S',
+                    snippet: 'Fast just got faster with Nexus S.'
+                }, {
+                    name: 'Motorola XOOM™ with Wi-Fi',
+                    snippet: 'The Next, Next Generation tablet.'
+                }, {
+                    name: 'MOTOROLA XOOM™',
+                    snippet: 'The Next, Next Generation tablet.'
+                }
+            ];
+        }
+    });
+</script>
+</body>
+</html>

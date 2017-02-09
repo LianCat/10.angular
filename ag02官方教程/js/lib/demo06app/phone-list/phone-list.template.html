@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            搜索: <input ng-model="$ctrl.query" />
+        </div>
+
+        <div class="col-md-10">
+            <ul class="phones">
+                <!-- 过滤器，将前面的结果，通过条件进行二次筛选 -->
+                <li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query">
+                    <span>{{phone.name}}</span>
+                    <p>{{phone.snippet}}</p>
+                </li>
+            </ul>
+            <input type="text" ng-model="$ctrl.lastName">
+            <p>大写测试:{{$ctrl.lastName | uppercase}}</p>
+            <input type="text" ng-model="$ctrl.lastName1">
+            <p>小写测试:{{$ctrl.lastName1 | lowercase}}</p>
+            <input type="text" ng-model="$ctrl.price">
+            <p>小写测试:{{$ctrl.price | currency:"￥"}}</p>
+        </div>
+    </div>
+</div>

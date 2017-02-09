@@ -1,0 +1,10 @@
+<div>
+    <input type="text" ng-keyup="$ctrl.search($ctrl.keyword)" ng-model="$ctrl.keyword">
+</div>
+<div>
+    <ul>
+        <li ng-repeat="res in reslist">
+            <p ng-bind="res"></p>
+        </li>
+    </ul>
+</div>

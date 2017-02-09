@@ -1,0 +1,29 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="js/lib/angular/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+<div ng-app="mi">
+	<div>单价：￥20</div>
+	<div>数量：<input type="text" ng-model="con"/></div>
+	<div>小计金额：{{con * 20}}</div >
+</div>
+<div>
+	<div ng-controller="myCtrl1">
+		<input type="text" ng-model="name">
+		<span>{{name}}</span><br />
+	</div>
+</div>
+<script>
+	// 在angular框架中注册myApp模块
+	var app = angular.module("myApp", []);
+	// 声明一个控制器，控制器名称为myCtrl1
+	app.controller("myCtrl1", function($scope) {
+		$scope.name = "jerry";// 控制器1中的数据，name值赋值为jerry
+	})
+</script>
+</body>
+</html>

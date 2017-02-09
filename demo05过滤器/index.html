@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        /**
+         * 复习回顾~ 整合案例
+         *
+         * 过滤器
+         *  1）内置过滤器
+         *  currency:格式化数字为货币格式
+         *  date：格式化毫秒数为时间格式
+         *  filter：数据筛选
+         *  json：将JS对象转换成JSON字符串输出
+         *  limitTo：限制输出的数量
+         *  lowercase：转换成小写
+         *  number：格式化为标准数字格式，同时可以保留小数位数
+         *  orderBy：排序
+         *  uppercase：转换成大写
+         *  2）自定义过滤器[使用自定义过滤器模拟实现部分内置过滤器]
+         *  自定义过滤器，通过app.filter("filterName", function() {})进行声明
+         *  语法结构：
+         *  app.filter("name", function() {
+         *      // 返回一个处理函数
+         *      // input参数：用户要过滤的数据
+         *      // param参数：过滤条件
+         *      return function(input, param) {
+         *          // 过滤逻辑代码
+         *          var out = input + ".00";
+         *          // 返回处理后的结果用于展示
+         *          return out;
+         *      }
+         *  })
+         *  过滤器使用：
+         *      过滤器一般都使用在展示数据的地方[输出]
+         *      过滤器通常会在ng-bind中进行使用。
+         *
+         * 路由
+         *  SPA
+         */
+    </script>
+    <script src="angular/angular.min.js"></script>
+</head>
+<body>
+    <div ng-controller="ctrl">
+        <div>
+            货币：<input type="text" ng-model="price">
+            <span ng-bind="price | currency:'¥'"></span>
+        </div>
+        <div>
+            时间：<input type="text" ng-model="time">
+            <span ng-bind="time | date:'yyyy年MM月dd日 HH:mm:ss'"></span>
+        </div>
+        <div>
+            筛选：<input type="text" ng-model="query">
+            <ul>
+                <li ng-repeat="s in strs | filter:query">
+                    <div ng-bind="s"></div>
+                </li>
+            </ul>
+        </div>
+        <div>
+            JSON格式化：<span ng-bind="user | json"></span>
+        </div>
+        <div>
+            limitTo限制：<input type="text" ng-model="limit">
+            筛选：<input type="text" ng-model="query">
+            <ul>
+                <li ng-repeat="s in strs | filter:query | limitTo:limit">
+                    <div ng-bind="s"></div>
+                </li>
+            </ul>
+        </div>
+        <div>
+
+            数字格式化：<input type="text" ng-model="num">
+            <div ng-bind="num | number:0"></div>
+            <div ng-bind="num | number:3"></div>
+        </div>
+        <div>
+            排序：
+            <ul>
+                <li ng-repeat="s in strs | orderBy:$index:true">
+                    <div ng-bind="s"></div>
+                </li>
+            </ul>
+        </div>
+        <div>
+            转成小写：
+        </div>
+        <div>
+            转成大写：
+        </div>
+        <div>
+            自定义过滤器: <input type="text" ng-model="nums">
+            <span ng-bind="nums | myfilter:'$'"></span>
+        </div>
+    </div>
+<script>
+    var app = angular.module("myApp", [])
+    app.filter("myfilter", function() {
+        /* 返回一个处理函数【第一个参数用户要过滤的数据，第二个参数过滤条件】*/
+        return function(input, param) {
+            // TODO 过滤器中进行代码逻辑处理部分
+            console.log(input, param);
+
+            if(input != '') {
+                input = param + input;
+            }
+            // 返回处理后的结果用于展示
+            return input;
+        }
+    });
+    app.controller("ctrl", ["$scope", function($scope) {
+        $scope.nums = 0;
+        $scope.strs = ["ab", "bc", "cd", "de", "ef", "fg", "gh", "hi"];
+        $scope.user = {
+            username : "admin",
+            password : "a122j3h4jn3jehj3h34j"
+        };
+    }]);
+
+</script>
+</body>
+</html>

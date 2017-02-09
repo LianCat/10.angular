@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="phonecatApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/lib/angular/angular.min.js"></script>
+</head>
+<body ng-controller="demo1">
+<ul>
+    <li ng-repeat="i in is">
+        <span>{{i.name}}</span>
+        <span>{{i.gender}}</span>
+    </li>
+</ul>
+<dome2></dome2>
+<script>
+    var app =  angular.module('phonecatApp',[])
+
+    app.controller('demo1',function($scope){
+        $scope.is = [
+            {
+                name:'mmm'
+            },
+            {
+                name:'dsfsdfsd'
+            },
+            {
+                name:'edde'
+            },
+        ]
+    })
+
+    app.component("demo2",{
+        templateUrl:
+        ,
+        controller:function($scope){
+            $scope.phone=[
+                {
+                    name:'edfsd',
+                    xingbie:'nan'
+                }
+            ]
+        }
+    })
+</script>
+</body>
+</html>

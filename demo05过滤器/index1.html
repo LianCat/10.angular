@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script>
+		/**
+		 * 复习回顾~ 整合案例
+		 *
+		 * 过滤器
+		 *  1）内置过滤器
+		 *  currency:格式化数字为货币格式
+		 *  date：格式化毫秒数为时间格式
+		 *  filter：数据筛选
+		 *  json：将JS对象转换成JSON字符串输出
+		 *  limitTo：限制输出的数量
+		 *  lowercase：转换成小写
+		 *  number：格式化为标准数字格式，同时可以保留小数位数
+		 *  orderBy：排序
+		 *  uppercase：转换成大写
+		 *  2）自定义过滤器[使用自定义过滤器模拟实现部分内置过滤器]
+		 *  自定义过滤器，通过app.filter("filterName", function() {})进行声明
+		 *  语法结构：
+		 *  app.filter("name", function() {
+         *      // 返回一个处理函数
+         *      // input参数：用户要过滤的数据
+         *      // param参数：过滤条件
+         *      return function(input, param) {
+         *          // 过滤逻辑代码
+         *          var out = input + ".00";
+         *          // 返回处理后的结果用于展示
+         *          return out;
+         *      }
+         *  })
+		 *  过滤器使用：
+		 *      过滤器一般都使用在展示数据的地方[输出]
+		 *      过滤器通常会在ng-bind中进行使用。
+		 *
+		 * 路由
+		 *  SPA
+		 */
+	</script>
+	<script src="angular/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="ctrl">
+	<div>
+		货币：<input type="text" ng-model="price">
+		<span ng-bind="price | currency:'¥'"></span>
+	</div>
+	<div>
+		时间：<input type="text" ng-model="time"/>
+		<span ng-bind="time | date:'yyyy年mm月dd日 hh:mm:ss'"></span>
+	</div>
+	<div>
+		<input type="text" ng-model="query"/>
+		<ul>
+			<li ng-repeat="q in qs|filter:query ">  <!--数据筛选-->
+				<p ng-bind="q"></p>
+			</li>
+		</ul>
+	</div>
+</div>
+<script>
+	var app = angular.module("myApp",[])
+	app.controller("ctrl", ["$scope", function($scope) {
+		$scope.qs = [1,4651,885,84,83,15]
+	}])
+</script>
+</body>
+</html>

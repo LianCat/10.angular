@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head >
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="angular.min.js"></script>
+	<style>
+		.lin{width:20px;
+			height: 2000px}
+	</style>
+</head>
+<body>
+<div ng-controller="md">
+	<button ng-click="bottom()">点击到底部</button>
+	<span id="top"></span>
+
+	<div class="lin"></div>
+
+	<button ng-click="top()">点击到上部</button>
+	<span id="bottm"></span>
+</div>
+
+<script>
+	var app=angular.module("myApp",[])
+	app.controller("md",["$scope","$location","anchorScroll",function($scope,$location,$anchorScroll){
+		$scope.bottom = function(){
+			$location.hash("bottom")
+			$anchorScroll()
+		}
+
+		$scope.top = function(){
+			$location.hash("top")
+			$anchorScroll()
+		}
+	}])
+</script>
+</body>
+</html>

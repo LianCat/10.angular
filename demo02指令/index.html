@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/lib/angular/angular.min.js"></script>
+    <script>
+        /**
+         * angular指令操作
+         * 作用：angular提供了具备一定的处理功能和应用逻辑的一套指令，用于辅助程序快速开发
+         * 语法：<htmlele ng-directive></htmlele> 作为html标签的属性进行使用
+         * 用法：
+         *      ** 用于程序控制
+         *      ** 用于数据绑定
+         *      ** 用于事件处理
+         *      ** 用于样式处理
+         * 常见指令：
+         *  ng-app: 用于声明一个angular程序，也是angular程序引导启动的入口
+         *  ng-controller: 用于声明一个angular的控制器，控制器肯定是位于ng-app里面的
+         *
+         *  ng-init: 用于初始化数据的~ 但是通常数据的初始化行为，会放在controller中进行
+         *          默认值
+         *          循环遍历的下标记录等等
+         *  ng-bind: 表达式的另一种写法，解决了angular加载不完整的情况下的数据输出问题
+         *  ng-model: 用于绑定表单元素的属性的{input select ...}
+         *
+         *  ng-click: 事件操作，绑定单击事件的指令
+         *  ng-***:用于事件绑定的指令~参考api文档
+         */
+        /**
+         * |-- ng-app
+         *
+         *      |-- component
+         *
+         *          |-- directive
+         *
+         * |-- app.module.js
+         * |-- app.config.js
+         *      |-- phone-list.module.js
+         *      |-- phone-list.component.js
+         *          |-- phone-list.directive.js
+         */
+    </script>
+</head>
+<body>
+<div ng-controller="myCtrl" ng-init="age=12">
+    <a ng-href="#">这是一个空href的标签</a><br />
+    {{"表达式"}}<br />
+    <hr/>
+    {{name}}<br />
+    <div ng-bind="name"></div>
+    <hr />
+    {{age}}<br />
+    <div ng-bind="age"></div>
+    <hr />
+    <input type="text" ng-model="username"><br />
+    用户输入了数据：<div ng-bind="username"></div>
+    <hr />
+    <input type="text" ng-model="price">
+    <input type="text" ng-model="count">
+    <div ng-bind="price * count"></div>
+    <hr />
+    <!-- 事件中，可以直接进行表达式操作 -->
+    <button ng-click="clickMe = clickMe + 1">按钮：点击我增加1</button>
+    <button ng-click="clickMe = clickMe - 1">按钮：点击我减少1</button>
+    <div ng-bind="clickMe"></div>
+    <button ng-click="addCart()">点击加入购物车</button>
+    <hr/>
+    <div ng-show="true">这是ng-show内容</div>
+    <div ng-hide="false">这是ng-hide内容</div>
+    <p ng-click="s = !s">菜单项
+        <ul ng-show="s">
+            <li>下拉菜单</li>
+            <li>下拉菜单</li>
+            <li>下拉菜单</li>
+            <li>下拉菜单</li>
+        </ul>
+    </p>
+    <hr/>
+    <ul>
+        <li ng-repeat="str in strs" ng-init="i=$index;m=$middle;e=$even">
+            {{str + "~~" + i + "~~" + m + "~~" + e}}
+        </li>
+    </ul>
+    <hr />
+    <friend-links></friend-links>
+    <div friend-links></div>
+
+    <!-- TODO 自定义指令，通常只使用标签名称、属性名称~~~class名称和注释匹配待定！ -->
+    <div class="friend-links"></div>
+    <!-- directive:friend-links -->
+    <hr/>
+
+</div>
+
+
+<script>
+    var app = angular.module("myApp", []);
+
+    app.controller("myCtrl", function($scope) {
+        $scope.name = "jerry";
+        $scope.price = 88.8;
+        $scope.count = 1;
+        $scope.clickMe = 1;
+        $scope.s = true;
+        $scope.strs = [
+            "a","b","c","d"
+        ];
+    });
+    /* 自定义指令 名称[驼峰命名法]*/
+    app.directive("friendLinks", function() {
+        return {
+            restict:"AECM",/*E可以作为标签，C表示可以作为class名称，A表示可以作为属性，M表示可以作为注释，默认EA*/
+            replace:true,
+            // template:"<h1>自定义指令</h1>"
+            templateUrl:"fl.html"
+        };
+    });
+</script>
+</body>
+</html>

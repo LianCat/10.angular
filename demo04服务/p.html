@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="angular.min.js"></script>
+</head>
+<body>
+	<div ng-controller="ctrl"></div>
+
+	<script>
+		var app = angular.module("myAPP",[])
+		app.controller("ctrl",["$location",function($location){
+			console.log($location.absUrl())
+		}])
+	</script>
+
+	<script>
+		var app = angular.module("myApp", []);
+		/**
+		 * $location服务，专门用来进行URL地址的解析处理
+		 *      $location必须包含在控制器的函数中，通过$location依赖注入之后才能使用
+		 */
+			app.controller("ctrl", ["$location", function($location) {
+			console.log($location.absUrl() + "       05");
+			$location.url("/phones/huawei?username=baz&password=123");
+
+			console.log($location.url());
+
+			console.log($location.protocol());
+
+			console.log($location.host());
+
+			console.log($location.port());
+
+			console.log($location.path());
+
+			console.log($location.search());
+			$location.search("username", "admin");
+
+			$location.hash("bottom");
+			console.log($location.hash());
+
+		}]);
+	</script>
+</body>
+</html>

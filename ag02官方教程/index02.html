@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/lib/angular/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+    <div>
+        <div>单价：88.9</div>
+        <div>购买数量：<input type="text" ng-model="count"></div>
+        <div>小计金额：{{count * 88.9}}</div>
+    </div>
+    <script>
+        // 将一个ng-app当成模块注册给angular，让angular来管理
+        var app = angular.module("myApp", []);
+    </script>
+</body>
+</html>

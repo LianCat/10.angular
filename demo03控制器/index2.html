@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/lib/angular/angular.min.js"></script>
+</head>
+<body>
+    <div ng-controller="ctrl">
+        {{name}}
+    </div>
+<script>
+    /* 注册模块 */
+    var app = angular.module("myApp", []);
+    /* 在模块中声明/注册一个控制器 */
+    app.controller("ctrl", function($scope) {
+        $scope.name = "tom";
+    });
+</script>
+</body>
+</html>

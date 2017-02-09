@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/lib/angular/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="ctrl">
+    购买数量<input type="text" ng-model="count">{{subtotal(count)}}
+    <button ng-click="addCart(count)">加入购物车</button>
+    <span id="show"></span>
+    <hr />ctrl~~~~~~~~~~~~~
+    {{name + "~~~" + age}}
+
+    <div ng-controller="ctrl1">
+        <hr />ctrl1~~~~~~~~~~~~~
+        {{name + "~~~" + age}}
+
+        <div ng-controller="ctrl2">
+            <hr />ctrl2~~~~~~~~~~~~~
+            {{name + "~~~" + age}}
+        </div>
+
+    </div>
+</div>
+
+<div ng-controller="other">
+    <hr />other~~~~~~~~~~~~~
+    {{name + "~~~" + age}}
+</div>
+
+<script>
+    var app = angular.module("myApp", []);
+
+    app.controller("ctrl", function($scope, $rootScope) {
+        $scope.count = 1;
+
+        $scope.addCart = function(_count) {
+            alert("加入购物车" + _count);
+            // angular.element("#show").textContent = "您购买了" + _count + "件商品";
+        }
+
+        $scope.subtotal = function(count) {
+            return count * 88.8;
+        }
+
+        $scope.name = "jerry";
+        $rootScope.age = "root 12";
+    });
+
+    app.controller("ctrl1", function($scope) {
+        $scope.name = "tom";
+    });
+
+    app.controller("ctrl2", function($scope) {
+        $scope.name = "shuke";
+        $scope.age = 11;
+    });
+
+    app.controller("other", function($scope) {
+        $scope.name = "beita";
+    });
+</script>
+</body>
+</html>

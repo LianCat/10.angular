@@ -1,0 +1,32 @@
+总模块app.js   angular.module("myApp", ["baidu"])
+
+         百度搜索模块 baidu.module.js    angular.module("baidu", []);
+
+                         搜索组件baidu.component.js
+                                    angular.module("baidu").component("baiduSearch", {
+                                         templateUrl:"",
+
+                                         controller:function($scope, search) {
+                                               this.keyword = "关键词"
+
+                                               this.search = function(kw) {
+                                                         // 调用服务进行处理
+                                                         search.getData(kw, callback)
+                                               }
+                                               this.callback = function(data) { $scope.reslist = data.s;}
+                                    	 });
+                                    })
+ 								搜索服务baidu.services.js
+ 								          angular.module("baidu").service("search", function($http) {
+
+ 								          		this.getData = function(kw, fn) {
+
+ 								          		   $http({
+ 								          		   .....
+ 								          		   }).then(function(response) {
+ 								          		   		fn(response.data)
+ 								          		   }, function(response) {
+ 								          		   		console.log("失败了");
+ 								          		   });
+ 								          		}
+ 								          })

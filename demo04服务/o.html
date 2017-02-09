@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="angular.min.js"></script>
+</head>
+<body>
+	<div ng-controller="ctrl"></div>
+
+	<script>
+
+//		1.location是管理地址栏的内置对象,可以用来进行页面的重定向。
+		var app = angular.module("myApp",[]);
+		app.controller("ctrl",["$location",function($location){
+			console.log($location.absUrl()) ; /*获取现在这个文件的地址*/
+
+			$location.url("/wo/huawei?username=baz&password=123&ww=55")
+			console.log($location.url()) /*获取上面这个url地址*/
+			/*/huawei??username=baz&password=123*/
+
+			console.log($location.protocol());/*当前url协议*/
+			/*http*/
+
+			console.log($location.host());/*当前文件地址的主机名*/
+			/*localhost*/
+
+			console.log($location.port());/*当前端口*/
+			/*63342*/
+
+			console.log($location.path());/*/后面的文件*/
+			/*/wo/huawei*/
+
+			console.log($location.search());/*获取path后的数据*/
+			/*username=baz&password=123&ww=55*/
+			$location.search("username","admin")
+
+			$location.hash("dom")
+			console.log($location.hash());/**/
+		}])
+	</script>
+</body>
+</html>

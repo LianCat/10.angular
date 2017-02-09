@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/lib/angular/v1.2/angular.min.js"></script>
+</head>
+<body>
+    <div ng-controller="controller">
+        *{{name}}*
+        *{{age}}*
+    </div>
+    <div ng-controller="controller2">
+        *{{age}}*
+        *{{name}}*
+    </div>
+<script>
+    function controller($scope) {
+        $scope.name = "jerry";
+    }
+
+    function controller2($scope) {
+        $scope.age = 12;
+    }
+</script>
+</body>
+</html>

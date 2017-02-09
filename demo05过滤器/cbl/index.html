@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="css/commons.css"/>
+	<link rel="stylesheet" href="css/header.css"/>
+	<link rel="stylesheet" href="css/section.css"/>
+	<link rel="stylesheet" href="css/footer.css"/>
+	<link rel="stylesheet" href="js/lib/bootstrap/bootstrap.min.css"/>
+
+	<script src="js/lib/angular/angular.min.js"></script>
+	<script src="js/lib/angular/angular-route.min.js"></script> <!--导入路由-->
+
+	<script src="js/app/modules/header/header.module.js"></script>
+	<script src="js/app/modules/header/header.component.js"></script>
+
+	<script src="js/app/modules/section/section.module.js"></script>
+	<script src="js/app/modules/section/section.component.js"></script>
+
+	<script src="js/app/modules/footer/footer.module.js"></script>
+	<script src="js/app/modules/footer/footer.component.js"></script>
+
+	<script src="js/app/modules/app.index.module.js"></script>
+	<script src="js/app/modules/app.index.config.js"></script>
+</head>
+<body>
+<!--头部-->
+	<header>
+	<header-component></header-component>
+	</header>
+<!--侧边栏-->
+	<section>
+		<aside>
+			<!--侧边栏-->
+			<section-component></section-component>
+		</aside>
+		<!-- 内容区域 -->
+		<div class="content">
+			<div ng-view></div>
+		</div>
+		<div style="clear: both"></div>
+	</section>
+<!--页尾-->
+	<footer>
+		<footer-component></footer-component>
+	</footer>
+</body>
+</html>

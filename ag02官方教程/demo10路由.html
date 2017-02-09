@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="phonecatApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img{height:100px;width:100px;}
+    </style>
+    <!-- 引入angular核心框架文件 -->
+    <script src="js/lib/angular/angular.min.js"></script>
+    <!-- 引入angular框架路由功能文件 -->
+    <script src="js/lib/angular/angular-route.min.js"></script>
+
+    <script src="js/lib/demo10app/phone-list/phone-list.module.js"></script>
+    <script src="js/lib/demo10app/phone-list/phone-list.component.js"></script>
+
+    <script src="js/lib/demo10app/phone-detail/phone-detail.module.js"></script>
+    <script src="js/lib/demo10app/phone-detail/phone-detail.component.js"></script>
+
+    <script src="js/lib/demo10app/app.module.js"></script>
+    <script src="js/lib/demo10app/app.config.js"></script>
+
+</head>
+<body>
+    <div ng-view></div>
+</body>
+</html>

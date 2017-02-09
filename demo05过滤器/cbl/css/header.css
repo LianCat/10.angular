@@ -1,0 +1,12 @@
+.header{
+    width:1500px;
+    height: 100px;
+    background:#000;
+    margin: 0 auto;
+}
+.header p{
+    color:seashell;
+    width:100px;
+    margin: 0 auto;
+    font-size:32px;
+}

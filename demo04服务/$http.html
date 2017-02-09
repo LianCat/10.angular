@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>$http服务：核心服务</title>
+    <script src="../js/lib/angular/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="ctrl"></div>
+<script>
+    /**
+     * 常规操作，通过$http可以直接进行数据的异步请求或者跨域请求
+     *
+     * 默认情况下，较多的是通过$http.get()/$http.post()方式进行数据的异步请求
+     * 通过$http.jsonp()方法进行跨域数据请求
+     */
+    var app = angular.module("myApp", []);
+
+    app.config(['$sceDelegateProvider', function($sceDelegateProvider) {
+        // We must whitelist the JSONP endpoint that we are using to show that we trust it
+        $sceDelegateProvider.resourceUrlWhitelist([
+            'self',
+            'https://sp0.baidu.com/**'
+        ]);
+    }]).controller("ctrl", ["$http", function($http) {
+        /* 同域名下异步访问数据 【不涉及跨域】 */
+        /*$http({
+            method:"get",
+            url:"$location.html"
+        }).then(function(response) {
+            console.log(response.data);
+        }, function(response) {
+            console.log(response.data || "失败了...");
+        });*/
+
+        /* $http 跨域访问 ，跨域访问时，一定注意要添加一个config配置，通过$sceDelegateProvider服务添加信任URL列表*/
+        /*$http({
+            method:"jsonp",
+            url:"https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=abc",
+            jsonpCallbackParam:"cb"
+        }).then(function success(response) {
+            console.log(response.data);
+        });*/
+
+        /*快捷访问之get*/
+        /*$http.get("$location.html").then(
+            function(response) {
+                console.log(response.data);
+            }, function(response) {
+                console.log(response || "失败了...");
+            }
+        );*/
+
+        /*快捷访问post*/
+        /*$http.post("$location.html").then(
+            function(response) {
+                console.log(response);
+            }, function(response) {
+                console.log(response || "失败了...");
+            }
+        );*/
+//        $http.post("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=abc", {jsonpCallbackParam:"cb"}).then(
+//            function(response) {
+//                console.log(response);
+//            }, function(response) {
+//                console.log(response || "失败了...");
+//            }
+//        );
+
+        /* 快捷访问之jsonp跨域*/
+        /*$http.jsonp(
+            "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=abc",
+            {jsonpCallbackParam: 'cb'}
+        ).then(function (response) {
+            console.log(response);
+        });*/
+    }]);
+    //https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=abc
+
+
+</script>
+</body>
+</html>

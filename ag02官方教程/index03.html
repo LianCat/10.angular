@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/lib/angular/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+    <!-- 第一个控制器 -->
+    <h1>第一个控制器</h1>
+    <div ng-controller="myCtrl1">
+        <input type="text" ng-model="name">
+        <span>{{name}}</span><br />
+    </div>
+    <h1>第二个控制器</h1>
+    <div ng-controller="myCtrl2">
+        <input type="text" ng-model="name">
+        <span>{{name}}</span>
+    </div>
+<script>
+    // 在angular框架中注册myApp模块
+    var app = angular.module("myApp", []);
+    // 声明一个控制器，控制器名称为myCtrl1
+    app.controller("myCtrl1", function($scope) {
+        $scope.name = "jerry";// 控制器1中的数据，name值赋值为jerry
+    })
+    // 再声明一个控制器，控制器名称myCtrl2
+    app.controller("myCtrl2", function($scope) {
+        $scope.name = "tom";
+    });
+</script>
+</body>
+</html>

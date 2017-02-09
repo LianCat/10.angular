@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- step2. 将网页交给angular进行管理 | 让angular启动应用程序-->
+<html ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+        /**
+         * angular的表达式
+         * 作用：HTML作为标记语言，不能进行逻辑处理。angular在标签的基础上进行了功能的扩展
+         *      可以和普通的html标签一样进行书写，但是额外增加了逻辑处理
+         * 语法：{{expression}}
+         * 用法：参考step3步骤~使用变量、字符串、运算符
+         * 缺点：angularJS文件如果没有完全加载，表达式就会被当成普通的字符输出
+         * 解决方案：网页上如果一旦需要表达式输出数据，使用【ng-bind】指令进行替代
+         */
+    </script>
+</head>
+<body>
+    <!-- step3. 使用表达式
+        ** 直接使用变量
+        ** 直接输出字符串
+        ** 字符串拼接
+        ** 数据运算[运算符]
+     -->
+    {{param}}
+    {{"hello"}}<br />
+    {{"hello" + "angular!" + 1998}}<br />
+    {{10 * 4999}}<br />
+    {{true && false}}<br />
+    {{12 > 34}}<br />
+
+
+    <!-- step1. 引入angular框架核心文件 -->
+    <script src="../js/lib/angular/angular.min.js"></script>
+</body>
+</html>

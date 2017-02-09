@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义服务</title>
+    <script src="../js/lib/angular/angular.min.js"></script>
+    <script>
+        /**
+         * angular自定义服务
+         * 作用：用来封装重复使用的基础代码，封装好的函数被angular包装成服务~交给控制器进行使用
+         * 语法：
+         *     angular中，有三种方式定义自定义服务
+         *     factory 工厂定义
+         *     provider 供应商定义
+         *     service 服务提供商【推荐】
+         */
+
+    </script>
+</head>
+<body>
+    <div ng-controller="ctrl"></div>
+    <script>
+        var app = angular.module("myApp", []);
+
+        /*factory定义服务*/
+        app.factory("service1", function() {
+            // TODO 做很多底层的操作，如从后台获取JSON数据
+            return {
+                name:"jerry",
+                show:function() {
+                    return this.name + " say : angular ! factory!"
+                }
+            }
+        });
+        /* provider创建自定义服务，必须提供一个$get形式的构造函数，在使用的时候，同样也会自动创建对象，调用对象的属性和行为操作【JSON对象】*/
+        app.provider("service2", function() {
+            // TODO 服务中封装的处理代码
+            return {
+                $get:function() {
+                    // TODO 服务中封装的处理代码
+                    return {
+                        name:"shuke",
+                        show:function() {
+                            return this.name + " say : angular ! provider service!"
+                        }
+                    };
+                }
+            };
+        });
+        /*service创建自定义服务，service()方法的第二个参数就是一个对象~服务在执行的时候自动创建对象~就可以直接调用对象的属性或者方法来执行一定的代码处理*/
+        app.service("service3", function() {
+            // TODO 服务中封装的处理代码
+            this.name = "lazha!";// 属性 ： 定义控制器要控制的默认值
+            this.show = function() {// 行为 ：操作一系列的底层代码【DOM操作、数据请求、等等】
+                return this.name + " say : angular ! service opra!";
+            }
+        });
+
+        app.controller("ctrl", ["service1","service2","service3",  "$scope", function(service1,service2,service3, $scope) {
+            console.log(service1.name);
+            console.log(service1.show());
+            service1.name = "tom";
+            console.log(service1.name);
+
+            console.log(service2.name);
+            console.log(service2.show());
+            service2.name = "beita";
+            console.log(service2.name);
+
+            console.log(service3.name);
+            console.log(service3.show());
+            service3.name = "zhenjie";
+            console.log(service3.name);
+        }]);
+    </script>
+</body>
+</html>
